@@ -1,26 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
+import PokeDeck from './PokeDeck';
+import pokemonData from './pokemonData';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const data = pokemonData.map(function(el) {
+		return <PokeDeck data={{ key: el.id, name: el.name, type: el.type, xp: el.base_experience }} />;
+	});
+	return <div className="App">{data}</div>;
 }
 
 export default App;
