@@ -1,0 +1,12 @@
+.deck1,
+.deck2 {
+	display: flex;
+	justify-content: center;
+}
+
+.game-field {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	height: 100vh;
+}

@@ -1,16 +1,24 @@
 import React from 'react';
-
+import './PokeDeck.css';
 function PokeDeck(props) {
-	let num = ('00' + props.data.key).slice(-3);
-	let sprite = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${num}.png`;
+	let pokemon = {
+		player1: [],
+		player2: [ ...props.data ]
+	};
+
+	while (pokemon.player2.length > pokemon.player1.length) {
+		// this is data that will be used temporarily, as having a large data set will not allow for this type of random drawing to work
+		let random = Math.floor(Math.random() * pokemon.player2.length);
+		let draw = pokemon.player2.splice(random, 1);
+		pokemon.player1.push(draw);
+	}
+	console.log(props.data);
 	return (
-		<div>
-			<img src={sprite} alt="Pokemon" />
-			<h2>Name:{props.data.name}</h2>
-			<h3>Type:{props.data.type}</h3>
-			<h3>XP:{props.data.xp}</h3>
-			<hr />
+		<div className="game-field">
+			<div className="deck1">{pokemon.player1}</div>
+			<div className="deck2">{pokemon.player2}</div>
 		</div>
 	);
 }
+
 export default PokeDeck;
